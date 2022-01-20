@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../module';
@@ -13,48 +13,68 @@ const SideMenu = () => {
         dispatch(sideMenuValue());
     };
 
+    const slideAnimate = keyframes`
+        100%{
+            transform: translateX(0%);
+        }
+    `
+
     const SideMenuStyle = styled.div`
-        width: ${window.innerWidth};
+        width: 100%;
         height: 100%;
         position: absolute;
-        top: 20px;
+        top: 0px;
         right: 0px;
         background-color: rgba(0,0,0,0.6);
 
-        .closeBtn {
-            width: 30px;
-            height: 30px;
-            font-size: 20px;
-            border: none;
+        .sideMenuContainer {
+            width: 60%;
+            height: 100%;
             background-color: #fff;
-            position: relative;
-            right: 0;
+            position: absolute;
+            right: 0px;
+            transform: translateX(100%);
+
+            .closeBtn {
+                width: 30px;
+                height: 30px;
+                font-size: 20px;
+                border: none;
+                background-color: #fff;
+                position: relative;
+                right: 0;
+            }
+    
+            .mainMenu {
+                border-top: 1px solid #eee;
+                border-bottom: 1px solid #eee;
+    
+                .mainMenuList {
+                    width: 100%;
+                    display: inline-block;
+                    border: none;
+                }
+    
+            }            
         }
 
-        .mainMenu {
-            width: ${window.innerWidth * 0.6};
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-
-            .mainMenuList {
-                width: 100%;
-                display: inline-block;
-                border: none;
-            }
-
+        .slide {
+            animation: ${slideAnimate} 0.5s forwards;
         }
     `
     return(
         <SideMenuStyle>
-            <button type="button" className="closeBtn" onClick={onSideMenuValue}>X</button>
-            <ul className="mainMenu">
-                <li className="mainMenuList">
-                    <Link to={`/`}>단어검색</Link>
-                </li>
-                <li className="mainMenuList">
-                    <Link to={`/Word`}>단어시험</Link>
-                </li>
-            </ul>
+            <div className={`sideMenuContainer ${value ? 'slide' : ''}`}>
+                <button type="button" className="closeBtn" onClick={onSideMenuValue}>X</button>
+                <ul className="mainMenu">
+                    <li className="mainMenuList">
+                        <Link to={`/`}>단어검색</Link>
+                    </li>
+                    <li className="mainMenuList">
+                        <Link to={`/Word`}>단어시험</Link>
+                    </li>
+                </ul>
+            </div>
         </SideMenuStyle>
     )
 };

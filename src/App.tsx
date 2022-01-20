@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { BrowserRouter, BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from 'axios';
 import styled from 'styled-components';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import Index from './pages/Index';
 import Word from './pages/Word';
@@ -40,10 +40,6 @@ function App() {
             margin-right: 10px;
         }
     `
-
-    useState(() => {
-        console.log(`값 : ${value}`)
-    })
 
     return (
         <Router>
