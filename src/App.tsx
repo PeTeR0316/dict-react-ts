@@ -3,56 +3,61 @@ import { Link } from 'react-router-dom';
 import { BrowserRouter, BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from 'axios';
 import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Index from './pages/Index';
 import Word from './pages/Word';
+import SideMenu from './components/SideMenu';
+import Header from './components/Header';
+import SideMenuContainer from './containers/SideMenuContainer';
+import { RootState } from './module';
 
 function App() {
-  const AppStyled = styled.div`
-    width: 600px;
-    min-width: 375px;
-    margin: 0 auto;
-    text-align: center;
-    border: 1px solid #000;
+    const value = useSelector((state: RootState) => state.sideMenu.value);
 
-    a {
-        text-decoration: none;
-        color: #000
-    }
+    const AppStyled = styled.div`
+        width: 100%;
+        min-width: 375px;
+        margin: 0 auto;
+        text-align: center;
+        padding-top: 20px;
+        box-sizing: border-box;
 
-    ul {
-      list-style: none;
-      padding-left : 0px;
-    }
+        a {
+            text-decoration: none;
+            color: #000
+        }
 
-    .mainMenuList {
-        display : inline-block;
-        border: 1px solid #000;
-        padding 5px;
-        margin-right: 10px;
-    }
-  `
+        ul {
+        list-style: none;
+        padding-left : 0px;
+        }
+
+        .mainMenuList {
+            display : inline-block;
+            border: 1px solid #000;
+            padding 5px;
+            margin-right: 10px;
+        }
+    `
+
+    useState(() => {
+        console.log(`값 : ${value}`)
+    })
 
     return (
         <Router>
             <AppStyled>
-                <div className="App">
-                    <h1>전자사전</h1>
+                <SideMenuContainer />
+                <p>{value}</p>
 
-                    <ul className="mainMenu">
-                        <li className="mainMenuList">
-                            <Link to={`/`}>단어검색</Link>
-                        </li>
-                        <li className="mainMenuList">
-                            <Link to={`/Word`}>단어시험</Link>
-                        </li>
-                    </ul>
+                <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/Word" element={<Word />} />
+                </Routes>
 
-                    <Routes>
-                        <Route path="/" element={<Index />} />
-                        <Route path="/Word" element={<Word />} />
-                    </Routes>
-                </div>
+                {value ? <SideMenu /> : <></>}
+                
             </AppStyled>
         </Router>
     );
