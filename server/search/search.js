@@ -3,35 +3,38 @@ const express = require("express");
 const router = express.Router();
 
 // api 요청 변수
-const api_url = "https://openapi.naver.com/v1/papago/n2mt";
 const client_id = "gLN7v2OL3WgxmWbijeZC";
 const client_secret = "ZS5CD1q3kX";
 
-router.get('/keyword/:text', (req, res) => {
-    const translateText = req.params.text; //번역할 문장
-    let result = null;
+router.get('/dict', function (req, res) {
+    let result = null
+    const api_url = 'https://openapi.naver.com/v1/search/encyc.json?query=' + encodeURI(req.query.query); // json 결과
 
-    console.log(translateText)
-    // api 요청 옵션 (번역: 영어 -> 한글)
+    console.log(api_url);
+        
     const options = {
         url: api_url,
-        form: { source: "en", target: "ko", text: translateText },
         headers: {
             "X-Naver-Client-Id": client_id,
             "X-Naver-Client-Secret": client_secret,
-        },
+        }
     };
 
-    // api 요청 보내고 콜백으로 결과 받기
-    request.post(options, function (error, response, body) {
+    request.get(options, function (error, response, body) {
         if (!error) {
-            result = JSON.parse(body).message.result;
+            result = JSON.parse(body).items;
+
+            // res.writeHead(200, {'Content-Type': 'text/json;charset=utf-8'});
+            console.log(result[0]);
             res.send(result);
+            
         } else {
-            console.log("error = " + response.statusCode);
+            res.status(response.statusCode).end();
+            console.log('error = ' + response.statusCode);
         }
     });
-});
 
+    
+});
 
 module.exports = router;

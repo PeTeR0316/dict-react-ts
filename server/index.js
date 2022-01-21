@@ -1,7 +1,7 @@
 const request = require("request");
 const express = require('express');
 const app = express();
-const api = require('./search/search');
+const api = require('./translate/translate');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3001;

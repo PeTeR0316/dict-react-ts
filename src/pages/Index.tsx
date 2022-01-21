@@ -14,6 +14,7 @@ const IndexStyled = styled.div`
     .inputArea {
         width: ${window.innerWidth}px;
         max-width: 500px;
+        min-height: 300px;
         border-bottom: 1px solid #ddd;
         padding: 15px;
         display: inline-block;
@@ -21,7 +22,7 @@ const IndexStyled = styled.div`
 
     .translateArea {
         width: 100%;
-        min-height: 6.25em;
+        min-height: 200px;
         resize: none;
         border: none;
         outline: none;
@@ -39,10 +40,12 @@ const IndexStyled = styled.div`
     .translateResultArea {
         width: ${window.innerWidth}px;
         max-width: 500px;
+        min-height: 300px;
         border-bottom: 1px solid #ddd;
         padding: 15px;
         text-align: left;
         display: inline-block;
+        vertical-align: top;
 
         .resultText {
             width:100%;
@@ -59,7 +62,7 @@ const Index = () => {
     
 
     const fnTranslate = () => {
-        axios.get(`http://localhost:3001/search/keyword/${translateText}`)
+        axios.get(`http://localhost:3001/translate/keyword/${translateText}`)
             .then(response => {
                 setResult(response.data.translatedText);
             })
@@ -68,7 +71,7 @@ const Index = () => {
 
     return (
         <IndexStyled>
-            <div className="langArea">
+            {/* <div className="langArea">
                 <select name="source" id="source" onChange={({target}) => {setSource(target.value)}}>
                     <option value="en">영어</option>
                     <option value="ko">한국어</option>
@@ -77,7 +80,7 @@ const Index = () => {
                     <option value="ko">한국어</option>
                     <option value="en">영어</option>
                 </select>
-            </div>
+            </div> */}
             <div className="inputArea">
                 <textarea 
                     className="translateArea" 

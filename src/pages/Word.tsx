@@ -4,6 +4,13 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { response } from 'express';
 
+interface DictList {
+    title: string,
+    linl: string,
+    description: string,
+    thumbnail?: string
+};
+
 const IndexStyled = styled.div`
     .translateArea {
         width: 300px;
@@ -23,14 +30,12 @@ const IndexStyled = styled.div`
 `
 
 const Word = () => {
-    const [translateText, setTranslateText] = useState('');
+    const [searchText, setsearchText] = useState('');
     const [result, setResult] = useState([]);
 
-    const fnTranslate = () => {
-        axios.get(`http://localhost:3001/search/keyword/${translateText}`)
-            .then(response => {
-                setResult(response.data.translatedText);
-            })
+    const fnSearch = () => {
+        axios.get(`http://127.0.0.1:3001/search/dict?query=${searchText}`)        
+            .then(response => setResult(response.data))
             .catch(err => console.log(err));
     }
 
@@ -38,6 +43,21 @@ const Word = () => {
         <IndexStyled>
             <div>
                 <h2>단어 리스트</h2>
+                <input type="text" onChange={({target}) => setsearchText(target.value)}/>
+                <button onClick={fnSearch}>검색</button>
+
+                <button onClick={() => console.log(result[0])}>result</button>
+
+                {result.map((list, index) => {
+                    return (
+                        <ul key={index}>
+                            <li>{list.title}</li>
+                            <li>{list.description}</li>
+                            <li>{list.link}</li>
+                            <li>{list.thumbnail}</li>
+                        </ul>
+                    )
+                })}
             </div>
         </IndexStyled>
     )

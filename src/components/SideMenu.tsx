@@ -68,10 +68,10 @@ const SideMenu = () => {
                 <button type="button" className="closeBtn" onClick={onSideMenuValue}>X</button>
                 <ul className="mainMenu">
                     <li className="mainMenuList">
-                        <Link to={`/`}>단어검색</Link>
+                        <Link to={`/`}>번역</Link>
                     </li>
                     <li className="mainMenuList">
-                        <Link to={`/Word`}>단어시험</Link>
+                        <Link to={`/Word`}>단어검색</Link>
                     </li>
                 </ul>
             </div>
