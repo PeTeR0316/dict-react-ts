@@ -12,20 +12,29 @@ interface DictList {
 };
 
 const IndexStyled = styled.div`
-    .translateArea {
-        width: 300px;
-        height: 6.25em;
-        resize: none;
-    }
-    
-    .translateBtn {
-        width: 300px;
+    .searchInput {
+        height: 37px;
+        margin-right: 15px;
+        font-size: 20px;
     }
 
-    .translateResultArea {
-        width: 300px;
-        text-align: left;
+    .searchBtn {
+        width: 74px;
+        height: 37px;
+        background-color: #1eda69;
+        border: none;
+        border-radius: 20px;
+        color: #fff;
+    }
+
+    .searchList {
+        width: 90%;
         margin: 0 auto;
+        padding: 10px 0;
+        li {
+            text-align: left;
+            word-break: keep-all;
+        }
     }
 `
 
@@ -43,17 +52,16 @@ const Word = () => {
         <IndexStyled>
             <div>
                 <h2>단어 리스트</h2>
-                <input type="text" onChange={({target}) => setsearchText(target.value)}/>
-                <button onClick={fnSearch}>검색</button>
-
-                <button onClick={() => console.log(result[0])}>result</button>
+                <input type="text" className="searchInput" onChange={({target}) => setsearchText(target.value)}/>
+                <button className="searchBtn" onClick={fnSearch}>검색</button>
 
                 {result.map((list, index) => {
                     return (
-                        <ul key={index}>
-                            <li>{list.title}</li>
+                        <ul className="searchList" key={index}>
+                            <li>
+                                <a href={list.link}>{list.title}</a>
+                            </li>
                             <li>{list.description}</li>
-                            <li>{list.link}</li>
                             <li>{list.thumbnail}</li>
                         </ul>
                     )

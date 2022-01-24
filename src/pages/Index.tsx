@@ -21,11 +21,12 @@ const IndexStyled = styled.div`
     }
 
     .translateArea {
-        width: 100%;
+        width: 90%;
         min-height: 200px;
         resize: none;
         border: none;
         outline: none;
+        font-size: 20px;
     }
     
     .translateBtn {
@@ -50,6 +51,7 @@ const IndexStyled = styled.div`
         .resultText {
             width:100%;
             word-break: keep-all
+            font-size: 20px;
         }
     }
 `

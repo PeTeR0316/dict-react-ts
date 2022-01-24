@@ -32,13 +32,6 @@ function App() {
         list-style: none;
         padding-left : 0px;
         }
-
-        .mainMenuList {
-            display : inline-block;
-            border: 1px solid #000;
-            padding 5px;
-            margin-right: 10px;
-        }
     `
 
     return (

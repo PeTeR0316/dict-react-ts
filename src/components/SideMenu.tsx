@@ -29,6 +29,7 @@ const SideMenu = () => {
 
         .sideMenuContainer {
             width: 60%;
+            max-width: 300px;
             height: 100%;
             background-color: #fff;
             position: absolute;
@@ -36,16 +37,16 @@ const SideMenu = () => {
             transform: translateX(100%);
 
             .closeBtn {
-                width: 30px;
-                height: 30px;
+                width: 40px;
+                height: 40px;
                 font-size: 20px;
                 border: none;
                 background-color: #fff;
-                position: relative;
-                right: 0;
+                float: right;
             }
     
             .mainMenu {
+                margin-top 40px;
                 border-top: 1px solid #eee;
                 border-bottom: 1px solid #eee;
     
@@ -53,8 +54,8 @@ const SideMenu = () => {
                     width: 100%;
                     display: inline-block;
                     border: none;
+                    padding 5px;
                 }
-    
             }            
         }
 
