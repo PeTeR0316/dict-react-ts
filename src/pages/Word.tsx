@@ -6,7 +6,7 @@ import { response } from 'express';
 
 interface DictList {
     title: string,
-    linl: string,
+    link: string,
     description: string,
     thumbnail?: string
 };
@@ -40,7 +40,7 @@ const IndexStyled = styled.div`
 
 const Word = () => {
     const [searchText, setsearchText] = useState('');
-    const [result, setResult] = useState([]);
+    const [result, setResult] = useState([] as DictList[]);
 
     const fnSearch = () => {
         axios.get(`http://127.0.0.1:3001/search/dict?query=${searchText}`)        
@@ -62,7 +62,6 @@ const Word = () => {
                                 <a href={list.link}>{list.title}</a>
                             </li>
                             <li>{list.description}</li>
-                            <li>{list.thumbnail}</li>
                         </ul>
                     )
                 })}
