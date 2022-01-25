@@ -55,16 +55,19 @@ const Word = () => {
                 <input type="text" className="searchInput" onChange={({target}) => setsearchText(target.value)}/>
                 <button className="searchBtn" onClick={fnSearch}>검색</button>
 
-                {result.map((list, index) => {
-                    return (
-                        <ul className="searchList" key={index}>
-                            <li>
-                                <a href={list.link}>{list.title}</a>
-                            </li>
-                            <li>{list.description}</li>
-                        </ul>
-                    )
-                })}
+                {result.length === 0 ? 
+                    <h3>검색 결과가 없습니다.</h3> :
+                    result.map((list, index) => {
+                        return (
+                            <ul className="searchList" key={index}>
+                                <li>
+                                    <a href={list.link}>{list.title}</a>
+                                </li>
+                                <li>{list.description}</li>
+                            </ul>
+                        )
+                    })
+                }
             </div>
         </IndexStyled>
     )
