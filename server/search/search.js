@@ -1,16 +1,15 @@
 const request = require("request");
 const express = require("express");
 const router = express.Router();
+const  naver_api = require('../account');
 
 // api 요청 변수
-const client_id = "gLN7v2OL3WgxmWbijeZC";
-const client_secret = "ZS5CD1q3kX";
+const client_id = naver_api.NAVER_API.CLIENT_ID;
+const client_secret = naver_api.NAVER_API.CLIENT_SECRET;
 
 router.get('/dict', function (req, res) {
     let result = null
     const api_url = 'https://openapi.naver.com/v1/search/encyc.json?query=' + encodeURI(req.query.query); // json 결과
-
-    console.log(api_url);
         
     const options = {
         url: api_url,
@@ -23,11 +22,7 @@ router.get('/dict', function (req, res) {
     request.get(options, function (error, response, body) {
         if (!error) {
             result = JSON.parse(body).items;
-
-            // res.writeHead(200, {'Content-Type': 'text/json;charset=utf-8'});
-            console.log(result[0]);
             res.send(result);
-            
         } else {
             res.status(response.statusCode).end();
             console.log('error = ' + response.statusCode);
