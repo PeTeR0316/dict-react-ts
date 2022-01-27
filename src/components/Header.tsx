@@ -7,7 +7,7 @@ type VisibleValueProps = {
 }
 
 const Header = ({value, onSideMenuValue}: VisibleValueProps) => {
-    const [visibleValue, setVisibleValue] = useState(value);
+    const [visibleValue, setVisibleValue] = useState<boolean>(value);
 
     const HeaderStyle = styled.header`
         width: 100%
