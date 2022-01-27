@@ -17,7 +17,6 @@ const IndexStyled = styled.div`
         margin-right: 15px;
         font-size: 20px;
     }
-
     .searchBtn {
         width: 74px;
         height: 37px;
@@ -26,7 +25,6 @@ const IndexStyled = styled.div`
         border-radius: 20px;
         color: #fff;
     }
-
     .searchList {
         width: 90%;
         margin: 0 auto;
@@ -39,7 +37,7 @@ const IndexStyled = styled.div`
 `
 
 const Word = () => {
-    const [searchText, setsearchText] = useState('');
+    const [searchText, setsearchText] = useState<string>('');
     const [result, setResult] = useState([] as DictList[]);
 
     const fnSearch = () => {
