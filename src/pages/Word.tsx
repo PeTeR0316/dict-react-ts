@@ -59,6 +59,7 @@ const Word = () => {
                         return (
                             <ul className="searchList" key={index}>
                                 <li>
+                                    <span>{index + 1}. </span>
                                     <a href={list.link}>{list.title}</a>
                                 </li>
                                 <li>{list.description}</li>
