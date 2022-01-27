@@ -57,10 +57,10 @@ const IndexStyled = styled.div`
 `
 
 const Index = () => {
-    const [translateText, setTranslateText] = useState('');
-    const [result, setResult] = useState([]);
-    const [source, setSource] = useState("en");
-    const [target, setTarget] = useState("ko");
+    const [translateText, setTranslateText] = useState<string>('');
+    const [result, setResult] = useState<string>('');
+    const [source, setSource] = useState<string>("en");
+    const [target, setTarget] = useState<string>("ko");
     
 
     const fnTranslate = () => {
